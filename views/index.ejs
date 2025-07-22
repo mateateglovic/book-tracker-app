@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book app</title>
+    <link rel="stylesheet" href="/styles/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <div class="outer-container">
+        <div class="inner-container">
+          <div class="top-bar">
+            <h1 class="playfair-display-medium">My books</h1>
+            <div class="top-bar-buttons">
+              <form class="sort-books" method="GET" action="/">
+                <label for="sort" class="fira-code-regular sort-label">Sort by:</label>
+                <select class="merriweather-regular" id="sort" name="sort" onchange="this.form.submit()">
+                  <option value="rating-desc" <%= sort === 'rating-desc' ? 'selected' : '' %>>Rating (high → low)</option>
+                  <option value="rating-asc" <%= sort === 'rating-asc' ? 'selected' : '' %>>Rating (low → high)</option>
+                  <option value="date-desc" <%= sort === 'date-desc' ? 'selected' : '' %>>Date (newest first)</option>
+                  <option value="date-asc" <%= sort === 'date-asc' ? 'selected' : '' %>>Date (oldest first)</option>
+                </select>
+              </form>
+              <a href="/add"
+                ><p class="fira-code-regular book-button">Add book</p></a
+              >
+            </div>
+          </div>
+          <% if (locals.booksList.length != 0) { %>
+          <div class="book-grid">
+            <% for (let book of booksList) { %>
+            <div class="book-card">
+              <a href="/<%= book.id %>/details">
+                <img
+                  class="book-cover loaded"
+                  src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg"
+                  alt="<%= book.name %> cover image"
+                />
+                <h2 class="book-title merriweather-bold"><%= book.name %></h2>
+                <h3 class="book-author merriweather-regular">
+                  <%= book.author %>
+                </h3>
+                <p class="read-date merriweather-light">
+                  <%= formatMonthYear(book.read_date) %>
+                </p>
+                <p class="rating merriweather-light">
+                  ⭐<%= book.rating %> / 10.0
+                </p>
+              </a>
+            </div>
+            <% } %>
+          </div>
+          <% } else { %>
+          <div class="no-books">
+            <h1 class="merriweather-regular">No books added yet...</h1>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book app</title>
+    <link rel="stylesheet" href="/styles/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/flatpickr/flatpickr.min.css" />
+  </head>
+  <body>
+    <main>
+      <div class="outer-container">
+        <div class="inner-container-add-edit">
+          <div class="top-bar-add-edit">
+            <% if (locals.selectedBook) { %>
+            <a href="/"><p class="playfair-display-medium back-arrow">←</p></a>
+            <h1 class="playfair-display-medium">Edit book</h1>
+            <% } else { %>
+            <a href="/"><p class="playfair-display-medium back-arrow">←</p></a>
+            <h1 class="playfair-display-medium">Add book</h1>
+            <% } %>
+          </div>
+          <% if (locals.selectedBook) { %>
+          <form
+            class="form"
+            action="/<%= selectedBook.id %>/edit"
+            method="post"
+          >
+            <label
+              class="merriweather-bold"
+              for="book-title"
+              style="font-size: 14px"
+              >Title</label
+            >
+            <input
+              class="merriweather-regular"
+              id="book-title"
+              name="title"
+              value="<%= selectedBook.name %>"
+              required
+            />
+
+            <label
+              class="merriweather-bold"
+              for="book-author"
+              style="font-size: 14px"
+              >Author</label
+            >
+            <input
+              class="merriweather-regular"
+              id="book-author"
+              name="author"
+              value="<%= selectedBook.author %>"
+              required
+            />
+
+            <div class="date-rating-container">
+              <div class="date-container">
+                <label
+                  class="merriweather-bold"
+                  for="book-date-read"
+                  style="font-size: 14px"
+                  >Date read</label
+                >
+                <input
+                  class="merriweather-regular"
+                  id="book-date-read"
+                  name="date"
+                  type="text"
+                  placeholder="Select date"
+                  value="<%= selectedBook.read_date %>"
+                  required
+                />
+              </div>
+              <div class="rating-container">
+                <label
+                  class="merriweather-bold"
+                  for="book-rating"
+                  style="font-size: 14px"
+                  >Rating</label
+                >
+                <input
+                  class="merriweather-regular"
+                  id="book-rating"
+                  name="rating"
+                  type="number"
+                  step="0.1"
+                  min="0.0"
+                  max="10.0"
+                  value="<%= selectedBook.rating %>"
+                  required
+                />
+              </div>
+            </div>
+
+            <label
+              class="merriweather-bold"
+              for="book-isbn"
+              style="font-size: 14px"
+              >ISBN</label
+            >
+            <input
+              class="merriweather-regular"
+              id="book-isbn"
+              name="isbn"
+              type="text"
+              minlength="10"
+              maxlength="17"
+              pattern="^(?:\d{9}[\dXx]|\d{13})$"
+              title="Enter a valid ISBN-10 (10 digits or 9 digits + X) or ISBN-13 (13 digits)"
+              value="<%= selectedBook.isbn %>"
+              required
+            />
+
+            <label
+              class="merriweather-bold"
+              for="book-notes"
+              style="font-size: 14px"
+              >Notes</label
+            >
+            <textarea
+              class="merriweather-regular"
+              id="book-notes"
+              name="notes"
+              rows="7"
+              required
+            >
+<%= selectedBook.notes %></textarea
+            >
+
+            <button class="save-button merriweather-regular" type="submit">
+              Save
+            </button>
+          </form>
+          <% } else { %>
+          <form class="form" action="/add" method="post">
+            <label
+              class="merriweather-bold"
+              for="book-title"
+              style="font-size: 14px"
+              >Title</label
+            >
+            <input
+              class="merriweather-regular"
+              id="book-title"
+              name="title"
+              required
+            />
+
+            <label
+              class="merriweather-bold"
+              for="book-author"
+              style="font-size: 14px"
+              >Author</label
+            >
+            <input
+              class="merriweather-regular"
+              id="book-author"
+              name="author"
+              required
+            />
+
+            <div class="date-rating-container">
+              <div class="date-container">
+                <label
+                  class="merriweather-bold"
+                  for="book-date-read"
+                  style="font-size: 14px"
+                  >Date read</label
+                >
+                <input
+                  class="merriweather-regular"
+                  id="book-date-read"
+                  name="date"
+                  type="text"
+                  placeholder="Select date"
+                  required
+                />
+              </div>
+              <div class="rating-container">
+                <label
+                  class="merriweather-bold"
+                  for="book-rating"
+                  style="font-size: 14px"
+                  >Rating</label
+                >
+                <input
+                  class="merriweather-regular"
+                  id="book-rating"
+                  name="rating"
+                  type="number"
+                  step="0.1"
+                  min="0.0"
+                  max="10.0"
+                  required
+                />
+              </div>
+            </div>
+
+            <label
+              class="merriweather-bold"
+              for="book-isbn"
+              style="font-size: 14px"
+              >ISBN</label
+            >
+            <input
+              class="merriweather-regular"
+              id="book-isbn"
+              name="isbn"
+              type="text"
+              minlength="10"
+              maxlength="17"
+              pattern="^(?:\d{9}[\dXx]|\d{13})$"
+              title="Enter a valid ISBN-10 (10 digits or 9 digits + X) or ISBN-13 (13 digits)"
+              required
+            />
+
+            <label
+              class="merriweather-bold"
+              for="book-notes"
+              style="font-size: 14px"
+              >Notes</label
+            >
+            <textarea
+              class="merriweather-regular"
+              id="book-notes"
+              name="notes"
+              rows="7"
+              required
+            ></textarea>
+
+            <button class="save-button merriweather-regular" type="submit">
+              Submit
+            </button>
+          </form>
+          <% } %>
+        </div>
+      </div>
+    </main>
+    <script src="/flatpickr/flatpickr.min.js"></script>
+    <script>
+      flatpickr("#book-date-read", {
+        dateFormat: "Y-m-d",
+        altInput: true,
+        altFormat: "Y-m-d",
+      });
+    </script>
+  </body>
+</html>

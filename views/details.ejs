@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book app</title>
+    <link rel="stylesheet" href="/styles/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <div class="outer-container">
+        <div class="inner-container" style="overflow-y: scroll">
+          <div class="details-column">
+            <a href="/"><p class="playfair-display-medium back-arrow">←</p></a>
+            <div class="details-row">
+              <div class="pic-info-container">
+                <img
+                  class="book-cover-details loaded"
+                  src="https://covers.openlibrary.org/b/isbn/<%= selectedBook.isbn %>-M.jpg"
+                  alt="<%= selectedBook.name %> cover image"
+                />
+                <div class="book-info-div">
+                  <h1
+                    class="playfair-display-medium"
+                    style="margin-bottom: 5px"
+                  >
+                    <%= selectedBook.name %>
+                  </h1>
+                  <h2 class="playfair-display-medium details-info">
+                    <%= selectedBook.author %>
+                  </h2>
+                  <p class="merriweather-bold details-info details-label">
+                    Rating
+                  </p>
+                  <p class="merriweather-regular details-info details-data">
+                    ⭐<%= selectedBook.rating %> / 10.0
+                  </p>
+                  <p class="merriweather-bold details-info details-label">
+                    Date read
+                  </p>
+                  <p class="merriweather-regular details-info details-data">
+                    <%= formatDateISO(selectedBook.read_date) %>
+                  </p>
+                </div>
+              </div>
+              <div class="buttons-container">
+                <a href="/<%= selectedBook.id %>/edit"
+                  ><p class="fira-code-regular book-button">Edit book</p></a
+                >
+                <a href="/<%= selectedBook.id %>/delete"
+                  ><p class="fira-code-regular book-button">Delete book</p></a
+                >
+              </div>
+            </div>
+            <h2 class="playfair-display-medium details-info notes-title">
+              Notes
+            </h2>
+            <div class="notes-container">
+              <p class="merriweather-light details-info">
+                <%= selectedBook.notes %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
