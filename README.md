@@ -63,10 +63,15 @@ DB_NAME=book_app
 
 ### 4. Create the database and table
 
-You can create the `books` table by running the provided schema:
+Create the database (if not already created):
+
+```bash
+createdb book_app
+
+Then run the schema script:
 
 ````bash
-psql -U your_user -d bookapp -f schema.sql
+psql -U your_user -d book_app -f schema.sql
 
 ---
 
