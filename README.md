@@ -61,13 +61,14 @@ DB_PASSWORD=your_db_password
 DB_NAME=book_app
 ```
 
-### 4. Create the database
+### 4. Create the database and table
 
-```bash
-createdb book_app
-```
+You can create the `books` table by running the provided schema:
 
-Set up your schema manually or run your SQL setup script.
+````bash
+psql -U your_user -d bookapp -f schema.sql
+
+---
 
 ### 5. Start the server
 
@@ -75,7 +76,7 @@ Set up your schema manually or run your SQL setup script.
 npm start
 # or with nodemon
 npx nodemon index.js
-```
+````
 
 ---
 
