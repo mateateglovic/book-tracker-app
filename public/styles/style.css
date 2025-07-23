@@ -137,10 +137,11 @@ a {
 .book-grid {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(180px, max-content));
   gap: 1.5rem;
   overflow-y: auto;
   padding-right: 1rem;
+  justify-content: start;
 }
 
 .book-card {
