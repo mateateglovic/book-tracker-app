@@ -116,3 +116,29 @@ GitHub: [@mateateglovic](https://github.com/mateateglovic)
 ---
 
 ## 📸 Screenshots
+
+### Home Page
+
+Displays all books with cover images, sorted by rating or date.
+![Home page](./public/images/home-page.png)
+
+---
+
+### Add Book Form
+
+Allows users to submit a new book with details like title, author, date, rating, ISBN, and notes.
+![Add Book](./public/images/add-book-form.png)
+
+---
+
+### Book Details View
+
+Detailed view of a single book with options to edit or delete.
+![Book Detail](./public/images/book-details.png)
+
+---
+
+### Edit Book Form
+
+Form to update an existing book’s details.
+![Edit Book](./public/images/edit-book-form.png)
