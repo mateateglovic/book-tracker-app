@@ -6,7 +6,7 @@ import pg from "pg";
 import flatpickr from "flatpickr";
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const port = 3000;
 
 dotenv.config();
 
@@ -139,6 +139,6 @@ app.locals.formatDateISO = function (dateString) {
   return date.toISOString().split("T")[0];
 };
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
