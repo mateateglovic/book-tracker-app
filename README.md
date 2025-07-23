@@ -1,4 +1,4 @@
-# 📚 Book Tacker App
+# 📚 Book Tracker App
 
 A web application for managing books you've read – with the ability to add notes, ratings, and read dates.
 
