@@ -6,7 +6,7 @@ This app was built to practice full-stack development with Node.js and PostgreSQ
 
 ---
 
-## 🧠 Project Overview
+## Project Overview
 
 This project helps you remember the key takeaways from books you've read. You can:
 
@@ -17,7 +17,7 @@ This project helps you remember the key takeaways from books you've read. You ca
 
 ---
 
-## 🔧 Technologies Used
+## Technologies Used
 
 - Node.js with Express.js
 - PostgreSQL (local database)
@@ -27,12 +27,12 @@ This project helps you remember the key takeaways from books you've read. You ca
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/book-tracker-app.git
+git clone https://github.com/mateateglovic/book-tracker-app.git
 cd book-tracker-app
 ```
 
@@ -63,29 +63,31 @@ DB_NAME=book_app
 
 ### 4. Create the database and table
 
-You can create the `books` table by running the provided schema:
+Create the database (if not already created):
+
+```bash
+createdb book_app
+
+Then run the schema script:
 
 ````bash
-psql -U your_user -d bookapp -f schema.sql
+psql -U your_user -d book_app -f schema.sql
 
 ---
 
 ### 5. Start the server
 
 ```bash
-npm start
-# or with nodemon
-npx nodemon index.js
+nodemon index.js
 ````
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 📁 public/           - Static files (CSS, etc.)
 📁 views/            - EJS templates
-📁 routes/           - Express route handlers
 📁 db/               - Database connection logic
 📄 index.js          - Main server entry point
 📄 .env.example      - Example environment config
@@ -94,7 +96,7 @@ npx nodemon index.js
 
 ---
 
-## ✅ Features
+## Features
 
 - Add, update, and delete books
 - Sort books by rating or date read
@@ -102,13 +104,7 @@ npx nodemon index.js
 
 ---
 
-## ❗ Error Handling
-
-Basic error handling is included for database operations and routing. Errors are logged to the console, and users see appropriate messages when needed.
-
----
-
-## 👤 Author
+## Author
 
 **Matea Teglović**  
 GitHub: [@mateateglovic](https://github.com/mateateglovic)
